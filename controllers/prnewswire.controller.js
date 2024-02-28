@@ -5,6 +5,7 @@ const moment = require("moment");
 const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
+require("dotenv").config();
 
 // PR NEWS WIRE API
 
@@ -191,7 +192,7 @@ exports.getAllPRNewsWire = async (req, res) => {
             : puppeteer.executablePath(),
         headless: "new"
       });
-      
+
       const page = await browser.newPage();
       await page.setCacheEnabled(false);
   

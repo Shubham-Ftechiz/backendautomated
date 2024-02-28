@@ -5,6 +5,7 @@ const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const moment = require("moment");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
+require("dotenv").config();
 
 // BUSINESS WIRE API
 
@@ -69,7 +70,7 @@ exports.getAllBussinessWire = async (req, res) => {
           : puppeteer.executablePath(),
       headless: "new"
     });
-    
+
     const page = await browser.newPage();
     await page.setCacheEnabled(false);
 

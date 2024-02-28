@@ -5,6 +5,7 @@ const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
+require("dotenv").config();
 
 // NEWS FILE API
 

@@ -6,6 +6,7 @@ const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
+require("dotenv").config();
 
 // GLOBE NEWS WIRE API
 
@@ -71,7 +72,7 @@ exports.getAllGlobeNewsWire = async (req, res) => {
           : puppeteer.executablePath(),
       headless: "new"
     });
-    
+
     const page = await browser.newPage();
     await page.setCacheEnabled(false);
 
