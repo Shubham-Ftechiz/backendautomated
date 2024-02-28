@@ -21,7 +21,19 @@ exports.getAllPRNewsWire = async (req, res) => {
 
       const listed_firms = [...law_firms];
       
-      const browser = await puppeteer.launch({ headless: false });
+      const browser = await puppeteer.launch({
+        args: [
+          "--disable-setuid-sandbox",
+          "--no-sandbox",
+          "--single-process",
+          "--no-zygote",
+        ],
+        executablePath:
+          process.env.NODE_ENV === "production"
+            ? process.env.PUPPETEER_EXECUTABLE_PATH
+            : puppeteer.executablePath(),
+        headless: "new"
+      });
 
       const page = await browser.newPage();
 
@@ -166,7 +178,20 @@ exports.getAllPRNewsWire = async (req, res) => {
   
       //req.body.firmName?.law_firms.push(req.body.firmName);
   
-      const browser = await puppeteer.launch({ headless: "new" });
+      const browser = await puppeteer.launch({
+        args: [
+          "--disable-setuid-sandbox",
+          "--no-sandbox",
+          "--single-process",
+          "--no-zygote",
+        ],
+        executablePath:
+          process.env.NODE_ENV === "production"
+            ? process.env.PUPPETEER_EXECUTABLE_PATH
+            : puppeteer.executablePath(),
+        headless: "new"
+      });
+      
       const page = await browser.newPage();
       await page.setCacheEnabled(false);
   
