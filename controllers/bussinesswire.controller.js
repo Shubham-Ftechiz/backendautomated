@@ -1,3 +1,4 @@
+require("dotenv").config();
 const BusinessWireSchema = require("../Schema/BusinessWireModel");
 const puppeteer = require("puppeteer");
 const emailSent = require("../utils/emailSent");
@@ -5,7 +6,6 @@ const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const moment = require("moment");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
-require("dotenv").config();
 
 // BUSINESS WIRE API
 
@@ -68,9 +68,7 @@ exports.getAllBussinessWire = async (req, res) => {
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: "new"
     });
-
     const page = await browser.newPage();
     await page.setCacheEnabled(false);
 

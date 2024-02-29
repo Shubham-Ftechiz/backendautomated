@@ -1,3 +1,4 @@
+require("dotenv").config();
 const GlobeNewsWireSchema = require("../Schema/GlobeNewsWireModel");
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
@@ -6,7 +7,6 @@ const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
-require("dotenv").config();
 
 // GLOBE NEWS WIRE API
 
@@ -70,9 +70,7 @@ exports.getAllGlobeNewsWire = async (req, res) => {
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: "new"
     });
-
     const page = await browser.newPage();
     await page.setCacheEnabled(false);
 

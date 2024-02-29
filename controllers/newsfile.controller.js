@@ -1,3 +1,4 @@
+require("dotenv").config();
 const NewsFileSchema = require("../Schema/NewsFileModel");
 const puppeteer = require("puppeteer");
 const moment = require("moment");
@@ -5,7 +6,6 @@ const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
-require("dotenv").config();
 
 // NEWS FILE API
 
@@ -115,7 +115,6 @@ exports.getAllNewsFile = async (req, res) => {
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: "new"
     });
     const page = await browser.newPage();
     await page.setCacheEnabled(false);

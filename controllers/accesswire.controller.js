@@ -1,10 +1,10 @@
+require("dotenv").config();
 const puppeteer = require("puppeteer");
 const AccessWireSchema = require("../Schema/AccessWireModel");
 const { filterDays } = require("../utils/filterDays");
 const emailSent = require("../utils/emailSent");
 const moment = require("moment");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
-require("dotenv").config();
 const { v4: uuidv4 } = require("uuid");
 
 // Function to introduce a delay using setTimeout
@@ -27,7 +27,6 @@ exports.getAllAccessWire = async (req, res) => {
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: "new"
     });
     const page = await browser.newPage();
 

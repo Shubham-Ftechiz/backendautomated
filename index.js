@@ -37,10 +37,8 @@ connection
 
 // Database connection Ends
 
-app.get('/', (req, res) => {
-  res.send({
-    message:"API is working"
-  })
+app.get('/test', (req, res) => {
+  res.send("API working on TEST!")
 })
 
 app.listen(PORT, () => { console.log(`Listening to PORT: ${PORT}`)

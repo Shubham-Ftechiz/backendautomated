@@ -1,3 +1,4 @@
+require("dotenv").config();
 const PRNewsWireSchema = require("../Schema/PRNewsWireModel");
 const NewFirmsWireSchema = require("../Schema/NewFirmModel");
 const puppeteer = require("puppeteer");
@@ -5,7 +6,6 @@ const moment = require("moment");
 const emailSent = require("../utils/emailSent");
 const { filterDays } = require("../utils/filterDays");
 const { v4: uuidv4 } = require("uuid");
-require("dotenv").config();
 
 // PR NEWS WIRE API
 
@@ -33,7 +33,6 @@ exports.getAllPRNewsWire = async (req, res) => {
           process.env.NODE_ENV === "production"
             ? process.env.PUPPETEER_EXECUTABLE_PATH
             : puppeteer.executablePath(),
-        headless: "new"
       });
 
       const page = await browser.newPage();
@@ -179,20 +178,7 @@ exports.getAllPRNewsWire = async (req, res) => {
   
       //req.body.firmName?.law_firms.push(req.body.firmName);
   
-      const browser = await puppeteer.launch({
-        args: [
-          "--disable-setuid-sandbox",
-          "--no-sandbox",
-          "--single-process",
-          "--no-zygote",
-        ],
-        executablePath:
-          process.env.NODE_ENV === "production"
-            ? process.env.PUPPETEER_EXECUTABLE_PATH
-            : puppeteer.executablePath(),
-        headless: "new"
-      });
-
+      const browser = await puppeteer.launch({ headless: "new" });
       const page = await browser.newPage();
       await page.setCacheEnabled(false);
   
